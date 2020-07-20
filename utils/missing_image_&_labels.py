@@ -2,15 +2,21 @@ import argparse
 import glob
 import os 
 
-'''
-Sometimes your image data set might not match with your label data set.
-This code does the folowing
-(1) Go through your image data set
-(2) Search if the corresponding label file exist in the label data set. 
-(3) If not, remove current image
-'''
-
 def missing_image(image_path, label_path):
+    """
+    This function removes the images from the train folder if the correspining labels are not found in the .txt file. 
+    NOTE - Make sure you perform the conversion from the label to txt. 
+    The code performs the following function, 
+
+    - Takes the input dataset folder path, searches if the images with label information are present. 
+    - If not found, removes the image. 
+
+    :params
+        image_path  - The directory where the training images are present 
+        label_path  - The directory where .txt file correspinding to each image is present. 
+
+    """
+
     for image in os.listdir(image_path):
         if image.endswith('jpg'):
             image_name = os.path.splitext(image)[0]

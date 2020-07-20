@@ -2,4 +2,4 @@ classes = 10
 train = bdd100k_data/train.txt
 valid = bdd100k_data/val.txt
 names = bdd100k_data/bdd100k.names
-backup = backup/
+backup = bdd100k_data/backup/

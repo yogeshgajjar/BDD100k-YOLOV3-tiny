@@ -2,18 +2,6 @@ import argparse
 import json
 
 
-# def parse_args():
-#     """
-#     Use argparse to get command line arguments. 
-#     """
-#     parser = argparse.ArgumentParser()
-#     parser.add_argument('label_path', help='path to the label dir')
-#     parser.add_argument('det_path', help='path to output detection file')
-#     args = parser.parse_args()
-
-#     return args
-
-
 def label2txt(frames, folder_name):
     """
     This function converts the labels into a .txt file with the same name as the image. It extracts the bounding box, class info from the 
