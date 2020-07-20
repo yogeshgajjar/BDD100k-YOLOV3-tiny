@@ -28,10 +28,41 @@ After being unzipped, all the files will reside in a folder named bdd100k. All t
 ## Steps to build 
 
 - Download the dataset and unzip the image and labels. Make sure you have \train folder with ~70k images as well as labels with train json file. 
-- Clone the Yolov3 darknet repository. 
+- Clone the Yolov3 darknet repository. Configure the Makefile to enable training it on GPU. 
   ```
   git clone https://github.com/pjreddie/darknet.git
   cd darknet 
   make 
   ```
+- Convert the labels into a .txt format where each txt file contains label information of each image. The python script ```label_to_txt.py``` to convert this is present in the utils folder. Perform this conversion for both train and val images. 
+- Check if the number of txt files and the images in the train folder are same. If found unequal, use the python script ```missing_image_&_label.py``` to remove the training image if no .txt information present. 
+- Generate train.txt and val.txt files as required by the yolov3. Use the python script ```test_val_txt.py``` to convert. 
+- Copy the bdd100k.data and bdd100k.names from the \data folder to a new folder (bdd100k_data) in the darknet yolov3 main folder. 
+  ```
+  cd darknet 
+  mkdir bdd100k_data
+  ``` 
+- Copy the yolov3-tiny-BDD100k.cfg from the \config folder to the same (bdd100_data) folder. 
+- Finally make sure you have the following files in the bdd100k_data folder. 
+  - train.txt 
+  - val.txt 
+  - bdd100k.data 
+  - bdd100k.names
+  - yolov3-tiny-BDD100k.cfg 
+  - backup folder which stores the weights 
+  
+- Download the yolov3 imagenet darknet53 [weights](https://pjreddie.com/darknet/yolo/)
+- Run the following on terminal for training the model 
+  ```
+  cd darknet 
+  ./darknet detector train bdd100k_data/bdd100k.data bdd100k_data/yolov3-tiny-BDD100k.cfg darknet53.conv.74
+  ``` 
+
+## Test the model performance 
+
+The yolov3 trained weights can be used to see the performance by running the following command on terminal. 
+```
+cd darknet 
+./darknet detector demo bdd100k_data/bdd100k.data bdd100k_data/yolov3-tiny-BDD100k.cfg bdd100k_data/backup/<weight_file> <video file>
+
 
