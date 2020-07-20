@@ -64,5 +64,7 @@ The yolov3 trained weights can be used to see the performance by running the fol
 ```
 cd darknet 
 ./darknet detector demo bdd100k_data/bdd100k.data bdd100k_data/yolov3-tiny-BDD100k.cfg bdd100k_data/backup/<weight_file> <video file>
+```
 
+## Final Output 
 
