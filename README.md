@@ -1,6 +1,6 @@
 # BDD100K-YOLOV3-tiny
 
-Road Object detection on BDD100K using Yolov3-tiny trained on Jetson TX2.
+Road Object detection on BDD100K using Yolov3-tiny trained on Jetson Xavier
 
 **[Link](https://www.youtube.com/watch?v=Asf7Op9gzO4&t=1s) to the video**
 
