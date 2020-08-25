@@ -2,7 +2,7 @@ import argparse
 import json
 
 
-def label2txt(frames, folder_name):
+def label2txt(frames, det_path):
     """
     This function converts the labels into a .txt file with the same name as the image. It extracts the bounding box, class info from the 
     .json file and converts it into the darknet format. 
@@ -12,7 +12,7 @@ def label2txt(frames, folder_name):
 
     :params 
         frames : each image with labeled information in the .json file.  
-
+        det_path : The path to output detection file. 
     """
 
     for frame in frames:
@@ -20,7 +20,7 @@ def label2txt(frames, folder_name):
         frame_name = img_name[:-4]
 
         #Creates, opens, and adds to a txt file with the name of each image.jpg
-        f = open(folder_name + frame_name + ".txt","w+")
+        f = open(det_path + frame_name + ".txt","w+")
 
         #For each sub label of each image, get the box2d variable
         #Get the relative center point compared to the image size 1280/720
@@ -63,19 +63,17 @@ def label2txt(frames, folder_name):
                 lbl = 9
             f.write(repr(lbl) + " " + repr(MX) + " " + repr(MY) + " " + repr(W-X) + " " + repr(H-Y) + '\n')
 
-def convert_labels(label_path, folder_name):
+def convert_labels(label_path, det_path):
     """
     Intermediate method called to pass the argument in to the label2txt folder. 
 
     :params 
         label_path  : The path where image labels are present. Basically the .json file 
         det_path    : The path for the output detection file   
-        folder_name : The name of the folder. Better to keep it as 'label'. 
-
     """
     
     frames = json.load(open(label_path, 'r'))
-    det = label2txt(frames, folder_name)
+    det = label2txt(frames, det_path)
     # json.dump(det, open(det_path, 'w'), indent=4, separators=(',', ': '))
 
 
@@ -84,10 +82,10 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument('-l', '--label_path', help='path to the label dir')
     ap.add_argument('-d', '--det_path', help='path to output detection file')
-    ap.add_argument('-n', '--folder_name', help='name of the label folder') 
+    # ap.add_argument('-n', '--folder_name', help='name of the label folder') 
     args = ap.parse_args()
 
-    convert_labels(args.label_path, args.folder_name)
+    convert_labels(args.label_path, args.det_path)
 
 
 if __name__ == '__main__':
