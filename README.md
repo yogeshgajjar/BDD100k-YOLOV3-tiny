@@ -2,6 +2,7 @@
 
 Road Object detection on BDD100K using Yolov3-tiny trained on Jetson Xavier
 
+![Yolov3](yolov3.gif)
 **[Link](https://www.youtube.com/watch?v=Asf7Op9gzO4&t=1s) to the video**
 
 ## Barkeley DeepDrive Dataset
