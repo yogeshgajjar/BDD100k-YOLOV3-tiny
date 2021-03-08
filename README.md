@@ -1,4 +1,4 @@
-# BDD100K-YOLOV3-tiny
+# BDD100K-YOLOV3-tiny (do not clone this branch) 
 
 Road Object detection on BDD100K using Yolov3-tiny trained on Jetson Xavier
 
